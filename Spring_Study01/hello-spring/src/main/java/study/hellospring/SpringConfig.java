@@ -1,6 +1,6 @@
 package study.hellospring;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import study.hellospring.repository.JdbcMemberRepository;
@@ -10,10 +10,14 @@ import study.hellospring.service.MemberService;
 import javax.sql.DataSource;
 
 @Configuration
-@RequiredArgsConstructor
 public class SpringConfig {
 
     private final DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public MemberService memberService() {
